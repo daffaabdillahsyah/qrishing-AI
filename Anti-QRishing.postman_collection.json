@@ -1,0 +1,75 @@
+{
+    "info": {
+        "name": "Anti-QRishing API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Scan URL",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"url\": \"https://example.com/login?secure=true&redirect=banking\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/scan",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8000",
+                    "path": ["api", "v1", "scan"]
+                },
+                "description": "Scan a URL for phishing threats"
+            },
+            "response": []
+        },
+        {
+            "name": "Scan QR Code",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "file",
+                            "type": "file",
+                            "src": []
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/scan/qr",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8000",
+                    "path": ["api", "v1", "scan", "qr"]
+                },
+                "description": "Upload and scan a QR code image for phishing threats"
+            },
+            "response": []
+        },
+        {
+            "name": "Get Scan History",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/history",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8000",
+                    "path": ["api", "v1", "history"]
+                },
+                "description": "Get history of scanned URLs"
+            },
+            "response": []
+        }
+    ]
+} 
