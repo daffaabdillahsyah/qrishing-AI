@@ -16,7 +16,7 @@ load_dotenv()
 
 class URLScanner:
     def __init__(self):
-        self.google_safe_browsing_api_key = os.getenv("GOOGLE_SAFE_BROWSING_API_KEY", "YOUR_API_KEY")
+        self.google_safe_browsing_api_key = os.getenv("GOOGLE_SAFE_BROWSING_API_KEY", "YOUR-GOOGLESAFE-API")
         self.safe_browsing_url = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
         self.model = None
         self.model_path = "models/url_classifier.joblib"
@@ -163,7 +163,7 @@ class URLScanner:
         }
     
     def _check_google_safe_browsing(self, url: str) -> bool:
-        if self.google_safe_browsing_api_key == "YOUR_API_KEY":
+        if self.google_safe_browsing_api_key == "YOUR-GOOGLESAFE-API":
             return False
             
         payload = {

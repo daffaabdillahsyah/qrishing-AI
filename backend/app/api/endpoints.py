@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlalchemy.orm import Session
 from typing import List, Optional, Dict
-from ..models.database import get_db, URLScan
-from ..services.url_scanner import URLScanner
-from ..services.qr_scanner import QRScanner
+from app.models.database import get_db, URLScan
+from app.services.url_scanner import URLScanner
+from app.services.qr_scanner import QRScanner
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -77,7 +77,21 @@ async def scan_qr_code(file: UploadFile = File(...), db: Session = Depends(get_d
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.get("/history", response_model=List[URLScanResponse])
+# @router.get("/history", response_model=List[URLScanResponse])
+# def get_scan_history(db: Session = Depends(get_db)):
+#     scans = db.query(URLScan).order_by(URLScan.scan_date.desc()).limit(100).all()
+#     return scans 
+
+@router.get("/history")
 def get_scan_history(db: Session = Depends(get_db)):
     scans = db.query(URLScan).order_by(URLScan.scan_date.desc()).limit(100).all()
-    return scans 
+    return {"data": scans}  # Wrap the list inside a dictionary
+
+
+# @router.get("/history", response_model=List[URLScanResponse])
+# def get_scan_history(db: Session = Depends(get_db)):
+#     scans = db.query(URLScan).order_by(URLScan.scan_date.desc()).limit(100).all()
+    
+#     print("Scans Retrieved:", scans)  # Debugging line
+    
+#     return scans

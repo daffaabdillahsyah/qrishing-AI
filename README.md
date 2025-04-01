@@ -103,6 +103,19 @@ The API returns detailed analysis results:
 
 For Flutter frontend setup and instructions, please refer to the [Flutter Documentation](https://docs.flutter.dev/get-started/install).
 
+1. Open folder frontend
+   - Open via terminal cd frontend
+   - Flutter pub get
+
+2. Open file history_page.dart change apiurl with backend url 
+
+3. Open file image_upload.dart in folder screens change apiurl with backend url
+
+4. Open file qr_scanner.dart in folder screens change apiurl with backend url 
+
+5. Running flutter via terminal : flutter run
+
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
